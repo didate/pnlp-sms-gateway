@@ -1,0 +1,9 @@
+{
+    "orange" :{
+        "authorization": "Basic orange_token"
+    },
+    "gateway": {
+        "apikey":"machin",
+        "senderNumber":"un numero de tel orange"
+    }
+}
