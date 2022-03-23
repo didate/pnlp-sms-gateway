@@ -19,8 +19,8 @@ app.post('/send-sms', async (req, res) => {
     message = message.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let response= "Error !";
     if (API === config.get('gateway.apikey')) {
-        //await sendSMS(message,telephone);
-        response = message; //"Done !"
+        await sendSMS(message,telephone);
+        response = "Done !"
     }
     res.send(response)
 });
