@@ -15,11 +15,12 @@ app.post('/send-sms', async (req, res) => {
 
     const API = req.query.smsapikey;
     const telephone = formatTel(req.query.to);
-    const message = decodeURI(req.query.content);
+    let message = req.query.content;
+    message = message.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let response= "Error !";
     if (API === config.get('gateway.apikey')) {
-        await sendSMS(message,telephone);
-        response = "Done !"
+        //await sendSMS(message,telephone);
+        response = message; //"Done !"
     }
     res.send(response)
 });
