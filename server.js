@@ -15,7 +15,7 @@ app.post('/send-sms', async (req, res) => {
 
     const API = req.query.smsapikey;
     const telephone = formatTel(req.query.to);
-    const message = req.query.content;
+    const message = decodeURI(req.query.content);
     let response= "Error !";
     if (API === config.get('gateway.apikey')) {
         await sendSMS(message,telephone);
