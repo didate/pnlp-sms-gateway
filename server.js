@@ -16,6 +16,7 @@ app.post('/send-sms', async (req, res) => {
     const API = req.query.smsapikey;
     const telephone = formatTel(req.query.to);
     let message = req.query.content;
+    message = convertMessageToHumanReadable(message);
     message = message.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let response= "Error !";
     if (API === config.get('gateway.apikey')) {
@@ -86,4 +87,13 @@ function formatTel(telephone) {
 
     telephone = `+224${telephone}`;
     return telephone;
+}
+
+function convertMessageToHumanReadable(message){
+    message = message.replace("%C3%A9", "é");
+    message = message.replace("%C3%A8", "è");
+    message = message.replace("%3A", ":");
+    message = message.replace("%C3%A0", "à");
+    message = message.replace(" ", '%20');
+    return message;
 }
