@@ -88,12 +88,3 @@ function formatTel(telephone) {
     telephone = `+224${telephone}`;
     return telephone;
 }
-
-function convertMessageToHumanReadable(message){
-    message = message.replace("%C3%A9", "é");
-    message = message.replace("%C3%A8", "è");
-    message = message.replace("%3A", ":");
-    message = message.replace("%C3%A0", "à");
-    message = message.replace(" ", '%20');
-    return message;
-}
